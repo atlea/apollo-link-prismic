@@ -1,0 +1,7 @@
+function PrismicLink() {
+    
+}
+
+export {
+    PrismicLink
+};

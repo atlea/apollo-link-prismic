@@ -1,0 +1,35 @@
+{
+  "name": "apollo-link-prismic",
+  "version": "1.0.0",
+  "description": "Atlea's implementation of an Apollo GQL link for prismic.",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "main": "lib/apollo-link-prismic.cjs.js",
+  "module": "lib/apollo-link-prismic.esm.js",
+  "typings": "lib/types/index.d.ts",
+  "repository": "https://github.com/atlea/apollo-link-prismic.git",
+  "author": "Jairo Tylera <Tylerian>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "tsc && rollup -c"
+  },
+  "devDependencies": {
+    "apollo-link": "^1.2.13",
+    "graphql": "^14.5.8",
+    "rollup": "^1.25.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.0-beta"
+  },
+  "peerDependencies": {
+    "apollo-link": "^1.2.13",
+    "graphql": "^14.5.8",
+    "tslib": "^1.10.0"
+  }
+}
