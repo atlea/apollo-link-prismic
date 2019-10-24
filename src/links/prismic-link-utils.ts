@@ -10,11 +10,11 @@ function extractPrismicMasterRef(response: PrismicRestApiResponse) {
 }
 
 function getPrismicGraphqlUrl(repository: string) {
-    return `//${repository}.cdn.prismic.io/graphql`;
+    return `https://${repository}.cdn.prismic.io/graphql`;
 }
 
 function getPrismicRestApiUrl(repository: string) {
-    return `//${repository}.cdn.prismic.io/api/v2`;
+    return `https://${repository}.cdn.prismic.io/api/v2`;
 }
 
 export {

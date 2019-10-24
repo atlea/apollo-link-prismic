@@ -29,7 +29,7 @@ function PrismicLink(options: PrismicLinkOptions) {
         uri: getPrismicGraphqlUrl(options.repositoryName),
         useGETForQueries: true
     }
-
+    
     return new PrismicLinkAuth(options)
         .concat(new HttpLink(httpOptions));
 }

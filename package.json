@@ -1,6 +1,6 @@
 {
   "name": "@atlea/apollo-link-prismic",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Atlea's implementation of an Apollo GQL link for prismic.",
   "files": [
     "lib",

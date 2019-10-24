@@ -56,7 +56,9 @@ class PrismicLinkAuth extends ApolloLink {
                     };
 
                     if (accessToken) {
-                        Object.assign(headers, { Authentication: accessToken });
+                        Object.assign(headers, {
+                            Authorization: `Token ${accessToken}`
+                        });
                     }
 
                     return headers;
@@ -77,7 +79,7 @@ class PrismicLinkAuth extends ApolloLink {
                         complete: observer.complete.bind(observer)
                     });
                 })
-                .catch(observer.error.bind(observer));
+                .catch(() =>observer.error.bind(observer));
 
             return () => handle?.unsubscribe();
         });
