@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "apollo-link": "^1.2.13",
+    "apollo-link-http": "^1.5.16",
     "graphql": "^14.5.8",
     "rollup": "^1.25.2",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -29,6 +30,7 @@
   },
   "peerDependencies": {
     "apollo-link": "^1.2.13",
+    "apollo-link-http": "^1.5.16",
     "graphql": "^14.5.8",
     "tslib": "^1.10.0"
   }
