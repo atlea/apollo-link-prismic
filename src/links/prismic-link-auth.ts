@@ -37,12 +37,16 @@ class PrismicLinkAuth extends ApolloLink {
             repositoryName
         } = this.options;
 
-        const apiurl = getPrismicRestApiUrl(repositoryName);
+        const apiurl = new URL(getPrismicRestApiUrl(repositoryName));
+
+        if (accessToken) {
+            apiurl.searchParams.append("access_token", accessToken);
+        }
 
         return new Observable<FetchResult>(observer => {
             let handle: any;
 
-            fetch(apiurl, { headers: { Accept: "application/json" } })
+            fetch(`${apiurl}`, { headers: { Accept: "application/json" } })
                 .then(response => response.json())
                 .then(extractPrismicMasterRef)
                 .then(prismref => {
