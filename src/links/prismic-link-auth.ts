@@ -1,16 +1,20 @@
 
 import {
-    ApolloLink, Operation, NextLink, Observable
+    ApolloLink,
+    FetchResult,
+    Observable,
+    Operation,
+    NextLink
 } from "apollo-link";
 
-type PrismicLinkOptions = {
-    /* Your prismic access token */
-    accessToken?: string;
-    /* A fallback fetch implementation */
-    fetch?: WindowOrWorkerGlobalScope["fetch"];
-    /* Your prismic repository name */
-    repositoryName: string;
-}
+import {
+    PrismicLinkOptions
+} from "./prismic-link";
+
+import {
+    extractPrismicMasterRef,
+    getPrismicRestApiUrl
+} from "./prismic-link-utils";
 
 const _fetch: WindowOrWorkerGlobalScope["fetch"] =
     (typeof window === "undefined")
@@ -18,7 +22,7 @@ const _fetch: WindowOrWorkerGlobalScope["fetch"] =
     ? global.fetch
     : window.fetch;
 
-class PrismicLink extends ApolloLink {
+class PrismicLinkAuth extends ApolloLink {
     private options: PrismicLinkOptions;
 
     public constructor(options: PrismicLinkOptions) {
@@ -35,12 +39,12 @@ class PrismicLink extends ApolloLink {
 
         const apiurl = getPrismicRestApiUrl(repositoryName);
 
-        return new Observable(observer => {
+        return new Observable<FetchResult>(observer => {
             let handle: any;
 
             fetch(apiurl, { headers: { Accept: "application/json" } })
                 .then(response => response.json())
-                .then(response => response.refs.filter((ref: any) => ref?.isMasterRef)[0]?.ref)
+                .then(extractPrismicMasterRef)
                 .then(prismref => {
                     const headers = {
                         "Prismic-Ref": <string>prismref,
@@ -76,14 +80,6 @@ class PrismicLink extends ApolloLink {
     }
 }
 
-function getPrismicRestApiUrl(repository: string) {
-    return `//${repository}.cdn.prismic.io/api/v2`;
-}
-
-function getPrismicGraphqlApiUrl(repository: string) {
-    return `//${repository}.cdn.prismic.io/graphql`;
-}
-
 export {
-    PrismicLink
+    PrismicLinkAuth
 };

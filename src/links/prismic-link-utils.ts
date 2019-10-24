@@ -9,8 +9,8 @@ function extractPrismicMasterRef(response: PrismicRestApiResponse) {
     return response.refs.filter(ref => ref.isMasterRef)[0].ref;
 }
 
-function getPrismicGraphUrl(repository: string) {
-    return `//${repository}.cdn.prismic.io/api/v2`;
+function getPrismicGraphqlUrl(repository: string) {
+    return `//${repository}.cdn.prismic.io/graphql`;
 }
 
 function getPrismicRestApiUrl(repository: string) {
@@ -19,6 +19,6 @@ function getPrismicRestApiUrl(repository: string) {
 
 export {
     extractPrismicMasterRef,
-    getPrismicGraphUrl,
+    getPrismicGraphqlUrl,
     getPrismicRestApiUrl
 };

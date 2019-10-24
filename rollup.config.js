@@ -1,5 +1,6 @@
 import manifest from "./package.json";
 import commonjs from "rollup-plugin-commonjs";
+import minifier from "rollup-plugin-terser";
 import replace from "rollup-plugin-replace";
 import resolver from "rollup-plugin-node-resolve";
 import typescript from "rollup-plugin-typescript";
@@ -12,6 +13,7 @@ export default {
     ],
     external: [
         "apollo-link",
+        "apollo-link-http",
         "graphql",
         "tslib"
     ],
@@ -27,6 +29,8 @@ export default {
         /* replace strings before bundling */
         replace({
             'process.env.NODE_ENV': JSON.stringify('production')
-        })
+        }),
+        /* minify bundle */
+        minifier.terser()
     ]
 }

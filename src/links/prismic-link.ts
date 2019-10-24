@@ -11,7 +11,7 @@ import {
 } from "./prismic-link-auth";
 
 import {
-    getPrismicGraphUrl
+    getPrismicGraphqlUrl
 } from "./prismic-link-utils";
 
 type PrismicLinkOptions = {
@@ -26,7 +26,7 @@ type PrismicLinkOptions = {
 function PrismicLink(options: PrismicLinkOptions) {
     const httpOptions = {
         fetch: options.fetch,
-        uri: getPrismicGraphUrl(options.repositoryName),
+        uri: getPrismicGraphqlUrl(options.repositoryName),
         useGETForQueries: true
     }
 
